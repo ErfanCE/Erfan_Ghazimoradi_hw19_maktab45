@@ -1,13 +1,17 @@
 const express = require('express');
-const Router = express.Router();
-const userRoute = require('./user-route');
+const router = express.Router();
+const authenticationRoute = require('./authentication-route');
+const accountRoute = require('./account-route');
 
 
-// root
-Router.get('/', (request, response) => response.send('Root'));
+// root: blogger profile
+router.get('/', (request, response) => response.redirect('/account'));
 
-// user route
-Router.use('/user', userRoute);
+// authentication
+router.use('/authentication', authenticationRoute);
+
+// account
+router.use('/account', accountRoute);
 
 
-module.exports = Router;
+module.exports = router;
